@@ -1,6 +1,8 @@
 import { authGuard } from './core/auth.guard';
 import { Routes } from '@angular/router';
+
 export const routes: Routes = [
+  // Lazy Loading -> só aparece os produtos se eu "clicar" neles
   {
     path: '',
     loadComponent: () => import('./features/home/home/home').then((m) => m.Home),
@@ -15,6 +17,12 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadComponent: () => import('./features/carrinho/carrinho/carrinho').then((m) => m.Carrinho),
   },
+
+   {
+    path: 'checkout',
+    loadComponent: () => import('./features/checkout/checkout/checkout').then((m) => m.Checkout),
+  },
+
   {
     path: '**',
     redirectTo: '',
